@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.WareDao">
+
+    <resultMap id="WareMap" type="com.example.demo.domain.Ware">
+        <result column="id" property="id" />
+        <result column="warename" property="wareName" />
+        <result column="descr" property="descr" />
+    </resultMap>
+
+    <parameterMap id="Ware" type="com.example.demo.domain.Ware"/>
+
+    <sql id="Base_Column_List">
+        id, warename, descr
+    </sql>
+
+    <select id="selectAll" resultMap="WareMap">
+        SELECT
+        *
+        FROM ware
+    </select>
+
+    <insert id="insert" parameterType="Ware" >
+        INSERT INTO ware(id,warename,descr)
+        VALUES (#{id},#{wareName},#{descr})
+    </insert>
+
+    <update id="updateById" parameterType="Ware">
+        UPDATE ware SET
+        warename = #{wareName},
+        descr = #{descr}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM ware
+        WHERE id = #{id}
+    </delete>
+</mapper>

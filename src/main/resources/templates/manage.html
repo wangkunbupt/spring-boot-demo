@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="UTF-8" />
+    <title>manage</title>
+    <link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">HELLO Manage</h3>
+    </div>
+<!--    <div class="panel-body">
+        <span th:text="${user.name}"></span>
+    </div> -->
+</div>
+查看所有商品：
+<form action="/show" method="post">
+    <input type="submit" value="查看"/>
+</form>
+
+增加新商品
+<form action="/add" method="post">
+    商品ID: <input type="text" name="wid" />
+    商品名称:<input type="text" name="warename"/>
+    商品描述:<input type="text" name="descr"/>
+    <input type="submit" value="确定"/>
+</form>
+
+<div th:if="${not #lists.isEmpty(wares)}">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">列表</h3>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item" th:each="ware:${wares}">
+                    <form action="/update" method="post">
+                        <input type="text" name="wid" value="wid" th:attr="value=${ware.id}" readOnly="true"/>
+                        <input type="text" name="warename" value="warename" th:attr="value=${ware.wareName}"/>
+                        <input type="text" name="descr" value="descr" th:attr="value=${ware.descr}"/>
+                <!--    <span th:text="${ware.id}"></span>
+                    <span th:text="${ware.wareName}"></span>
+                    <span th:text="${ware.descr}"></span>
+                -->
+
+                        <input type="submit" value="更新"/>
+                    </form>
+
+                    <form action="/delete" method="post">
+                        <input type="hidden" name="wid" value="wid" th:attr="value=${ware.id}" readOnly="true"/>
+                        <input type="hidden" name="warename" value="warename" th:attr="value=${ware.wareName}"/>
+                        <input type="hidden" name="descr" value="descr" th:attr="value=${ware.descr}"/>
+                        <input type="submit" value="删除"/>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{jquery-3.1.1.js}" type="text/javascript"></script>
+<script th:src="@{bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>
+</body>
+</html>
