@@ -1,8 +1,11 @@
 package com.example.demo.domain;
 
+import org.apache.ibatis.type.Alias;
+
 /**
  * Created by vale on 17/6/10.
  */
+@Alias("User")
 public class User {
     //用户名
     private String name;

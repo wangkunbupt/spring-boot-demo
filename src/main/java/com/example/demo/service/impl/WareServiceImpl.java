@@ -32,4 +32,13 @@ public class WareServiceImpl implements WareService{
         return wareDao.deleteById(id);
     }
 
+    //统计商品数量
+    public int countWare(){
+        return wareDao.countWare();
+    }
+    //删除特定商品
+    public int deleteSpeWare(String condition){
+        return wareDao.deleteSpeWare(condition);
+    }
+
 }

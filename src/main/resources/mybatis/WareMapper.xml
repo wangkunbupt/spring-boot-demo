@@ -8,7 +8,8 @@
         <result column="descr" property="descr" />
     </resultMap>
 
-    <parameterMap id="Ware" type="com.example.demo.domain.Ware"/>
+    <!-- Ware类文件中有Alias设定别名，所以注释掉了parameterMap-->
+<!--    <parameterMap id="Ware" type="com.example.demo.domain.Ware"/> -->
 
     <sql id="Base_Column_List">
         id, warename, descr
@@ -35,5 +36,16 @@
     <delete id="deleteById" parameterType="java.lang.Integer">
         DELETE FROM ware
         WHERE id = #{id}
+    </delete>
+
+    <!-- 定时任务使用到的统计商品数量功能-->
+    <select id="countWare" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM ware
+    </select>
+    <!-- 定时任务使用到的删除特定商品功能-->
+    <delete id="deleteSpeWare" parameterType="java.lang.String">
+        DELETE FROM ware
+        WHERE ware.descr LIKE CONCAT('%',#{condition},'%')
     </delete>
 </mapper>

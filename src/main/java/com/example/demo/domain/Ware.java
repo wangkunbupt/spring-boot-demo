@@ -1,8 +1,11 @@
 package com.example.demo.domain;
 
+import org.apache.ibatis.type.Alias;
+
 /**
  * Created by wangkun26 on 2017/6/12.
  */
+@Alias("Ware")
 public class Ware {
     private Integer id;
     private String wareName;

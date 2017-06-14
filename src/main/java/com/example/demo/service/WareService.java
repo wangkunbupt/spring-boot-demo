@@ -15,4 +15,10 @@ public interface WareService {
     int updateById(Integer id, String wareName, String descr);
 
     int deleteById(Integer id);
+
+    //统计商品数量
+    int countWare();
+    //删除特定商品
+    int deleteSpeWare(String condition);
+
 }
