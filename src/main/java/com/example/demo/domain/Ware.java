@@ -2,11 +2,15 @@ package com.example.demo.domain;
 
 import org.apache.ibatis.type.Alias;
 
+import java.io.Serializable;
+
 /**
  * Created by wangkun26 on 2017/6/12.
  */
 @Alias("Ware")
-public class Ware {
+public class Ware implements Serializable{
+    //在使用Redis缓存时，有需要把List<Ware>缓存的地方，报了无法序列化的异常，所以增加impl Serizalizable
+
     private Integer id;
     private String wareName;
     private String descr;

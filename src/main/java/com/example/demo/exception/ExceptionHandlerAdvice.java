@@ -14,6 +14,7 @@ public class ExceptionHandlerAdvice {
     public ModelAndView exception(Exception e){
         ModelAndView modelAndView = new ModelAndView("error");
         modelAndView.addObject("errorMessage",e.getMessage());
+
         return modelAndView;
     }
 }

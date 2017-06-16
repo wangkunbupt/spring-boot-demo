@@ -22,7 +22,9 @@ public class HttpAspect {
     private  Logger logger = Logger.getLogger(HttpAspect.class);
 
    @Pointcut("execution(public * com.example.demo.controller.*.*(..))")
-    public void log(){}
+    public void log(){
+
+   }
 
    @Before("log()")
     public void beforeLog(JoinPoint joinPoint){
@@ -40,6 +42,7 @@ public class HttpAspect {
 
         //调用方法
         logger.info("class_method={" +joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName()+"}");
+
         //参数
         logger.info("class_args={"+joinPoint.getArgs()+"}");
 

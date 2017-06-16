@@ -30,6 +30,7 @@ public class WareController {
     @RequestMapping("/show")
     public ModelAndView showAllWare(){
         Optional<List<Ware>> listWareOption = Optional.ofNullable(wareService.selectAll());
+
         return listWareOption.map(lw->{
             return new ModelAndView("manage").addObject("wares",lw);
         }).orElse(new ModelAndView("manage"));
@@ -40,6 +41,7 @@ public class WareController {
                         @RequestParam("warename") String wareName,
                         @RequestParam("descr") String descr){
         OptionalInt addRes = OptionalInt.of(wareService.insert(wid, wareName, descr));
+
         return showAllWare();
     }
 
@@ -48,12 +50,14 @@ public class WareController {
                                    @RequestParam("warename") String wareName,
                                    @RequestParam("descr") String descr){
         OptionalInt updateRes = OptionalInt.of(wareService.updateById(wid, wareName, descr));
+
         return showAllWare();
     }
 
     @RequestMapping("/delete")
     public ModelAndView deleteWare(@RequestParam("wid") Integer wid){
         OptionalInt deleteRes = OptionalInt.of(wareService.deleteById(wid));
+
         return showAllWare();
     }
 }

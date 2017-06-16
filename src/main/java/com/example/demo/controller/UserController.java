@@ -40,6 +40,7 @@ public class UserController {
         return result;
 */
         Optional<User> userOptional = Optional.ofNullable(userService.findUserInfo(name, password));
+
         return userOptional.map(u->{
             logger.info("user.getName():"+u.getName());
             logger.info("user.getAge()"+u.getAge());
