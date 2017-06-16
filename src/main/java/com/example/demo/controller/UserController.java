@@ -41,7 +41,7 @@ public class UserController {
 */
         Optional<User> userOptional = Optional.ofNullable(userService.findUserInfo(name, password));
         return userOptional.map(u->{
-            System.out.println("user.getName():"+u.getName());
+            logger.info("user.getName():"+u.getName());
             logger.info("user.getAge()"+u.getAge());
             return new ModelAndView("manage").addObject("user",u);
         }).orElse(new ModelAndView("index"));
